@@ -59,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .headers().frameOptions().sameOrigin().disable()
                 .cors()
                     .and()
                 .csrf()
@@ -85,6 +86,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability")
                         .permitAll()
                     .antMatchers(HttpMethod.GET, "/api/users/**")
+                        .permitAll()
+                    .antMatchers("/h2-console/**")
                         .permitAll()
                     .anyRequest()
                         .authenticated();
