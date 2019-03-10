@@ -7,9 +7,10 @@ pipeline {
   }
   stages {
     stage('Maven install') {
-      steps {
-        sh 'mvn clean install'
-      }
+      docker.image('node:10.5.3') {
+            /* Wait until mysql service is up */
+            sh 'mvn clean install'
+      }      
     }
     stage('run') {
       steps {
