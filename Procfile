@@ -1,0 +1,1 @@
+web: java -jar target/react-and-spring-0.0.1-SNAPSHOT.jar
